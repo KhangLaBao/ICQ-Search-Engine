@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Glorious Web Search</title>
+    <link rel="stylesheet" href="CSS+Js/style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />    
+</head>
+<body bgcolor="#e5e5e5">
+<div class="topbar">
+  <a href="index.html" style="font-weight: bolder;">Home</a>
+  &nbsp;|&nbsp;
+  <a href="https://www.youtube.com" target="_blank">YouTube</a>
+  <a href="https://news.google.com" target="_blank">News</a>
+  <a href="https://mail.google.com" target="_blank">Mail</a>
+  <a href="https://calendar.google.com" target="_blank">Calendar</a>
+  &nbsp;|&nbsp;
+  <a href="https://red-star-search.onrender.com" target="_blank">Access Low-Bandwidth Edition</a>
+  <span class="topbar-right" style="color:#0000EE">
+  Hello, Comrade <span id="usernameDisplay">Guest</span>!
+  &nbsp;|&nbsp;
+  <a href="about.html">About Red Star Search!</a>
+</span>
+</div>
+<center>
+    <!-- Bảng chính bao quanh toàn bộ nội dung 800px -->
+    <table width="800" border="0" cellpadding="0" cellspacing="0" style="margin-top: 20px;">
+        
+        <!-- HÀNG 1: THANH SEARCH XÁM -->
+        <tr>
+            <td>
+                <div class="legacy-search-container">
+                    <form action="results.html" method="get" style="margin: 0; padding: 0;">
+                        <input type="hidden" name="cx" value="c5ed00b64fd0146ff">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="1" style="padding-right: 15px;">
+                                    <a href="index.html">
+                                        <img src="imgs/badge.png" border="0" alt="Logo" style="display: block;">
+                                    </a>
+                                </td>
+                                <td>
+                                    <input type="text" name="q" class="legacy-input" placeholder="Search the entire web...">
+                                </td>
+                                <td width="1" style="padding-left: 10px;">
+                                    <input type="submit" value="Search" class="legacy-glossy-button">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </td>
+        </tr>
+
+        <!-- HÀNG 2: VIỀN ĐEN KẾT QUẢ -->
+        <tr>
+            <td style="padding-top: 10px;">
+                <div class="results-border-box">
+                    <script async src="https://cse.google.com/cse.js?cx=c5ed00b64fd0146ff"></script>
+                    <div class="gcse-searchresults-only"></div>
+                </div>
+            </td>
+        </tr>
+
+        <!-- HÀNG 3: FOOTER -->
+        <tr>
+            <td style="padding-top: 15px; text-align: left;">
+                <font face="Arial" size="2" color="#666">
+                    <a href="index.html" style="color: #1122cc; text-decoration: none;">« Back to Home</a> | 
+                    Powered by Google Programmable Search Engine
+                </font>
+            </td>
+        </tr>
+    </table>
+</center>
+
+</body>
+</html>
+
+<script>
+(function () {
+
+  // =========================
+  // 👤 USERNAME SYSTEM (LEGACY SAFE)
+  // =========================
+  function setupUsername() {
+    var span = document.getElementById("usernameDisplay");
+    if (!span) return;
+
+    var saved = localStorage.getItem("rss_username");
+    if (saved) span.innerHTML = saved;
+
+    span.style.cursor = "pointer";
+    span.style.textDecoration = "underline";
+    span.style.fontWeight = "bold";
+
+    span.onclick = function () {
+
+      var input = document.createElement("input");
+      input.type = "text";
+      input.value = span.innerHTML;
+      input.style.fontSize = "13px";
+      input.style.border = "1px solid #666";
+
+      span.parentNode.replaceChild(input, span);
+      input.focus();
+
+      function save() {
+        var name = input.value.replace(/^\s+|\s+$/g, "") || "Guest";
+
+        localStorage.setItem("rss_username", name);
+
+        var newSpan = document.createElement("span");
+        newSpan.id = "usernameDisplay";
+        newSpan.innerHTML = name;
+        newSpan.style.cursor = "pointer";
+        newSpan.style.textDecoration = "underline";
+        newSpan.style.fontWeight = "bold";
+
+        input.parentNode.replaceChild(newSpan, input);
+
+        setupUsername(); // reattach
+      }
+
+      input.onblur = save;
+      input.onkeydown = function (e) {
+        if (e.keyCode === 13) save();
+      };
+    };
+  }
+
+  // =========================
+  // 🟢 WELCOME
+  // =========================
+  function showWelcome() {
+    var q = new URLSearchParams(window.location.search).get('q');
+    var box = document.querySelector('.results-border-box');
+
+    if (!q && box) {
+      box.innerHTML =
+        '<div class="welcome-container">' +
+        '<h1>Welcome, Comrade! 🌟</h1>' +
+        '<p>The Red Star is ready to guide your search.</p>' +
+        '<p class="hint">Type something above to begin 🚩</p>' +
+        '<div class="star-icon">★</div>' +
+        '</div>';
+    }
+  }
+  
+  // =========================
+  // 🟡 STATS FIX
+  // =========================
+  function fixStats() {
+    var el = document.querySelector('.gsc-result-info');
+    if (!el) return;
+
+    var text = el.innerText;
+    var nums = text.match(/[\d,.]+/g);
+
+    if (nums && nums.length >= 2) {
+      el.innerHTML =
+        '🌟 <b>Report:</b> ' + nums[0] +
+        ' glorious results found for the People in ' +
+        nums[nums.length - 1] + ' seconds!';
+
+      el.style.color = "#d93025";
+      el.style.fontWeight = "bold";
+      el.style.fontFamily = "Arial";
+    }
+    // Thêm đoạn này vào trong setInterval hiện tại của đồng chí
+    document.querySelectorAll('.gsc-imageResult .gs-snippet, .gsc-imageResult .gs-title').forEach(el => {
+      el.style.setProperty('color', '#77aaff', 'important',fontWeight = 'bold', fontFamily = 'Arial', 'important');
+    });
+  }
+
+  // =========================
+  // 🔴 PAGINATION STYLE
+  // =========================
+  function polishRedStar() {
+    var boxes = document.querySelectorAll('.gsc-cursor-box');
+
+    for (var i = 0; i < boxes.length; i++) {
+      var box = boxes[i];
+
+      if (!box.getAttribute('data-red')) {
+        var pages = box.querySelectorAll('.gsc-cursor-page');
+
+        if (pages.length > 0) {
+          box.style.fontSize = "20px";
+          box.style.fontWeight = "bold";
+          box.style.textAlign = "center";
+
+          var start = document.createElement('span');
+          start.innerHTML = "R ";
+          start.style.color = "#d93025";
+          box.insertBefore(start, box.firstChild);
+
+          for (var j = 0; j < pages.length; j++) {
+            pages[j].innerHTML = "e";
+            pages[j].style.margin = "0 4px";
+          }
+
+          var end = document.createElement('span');
+          end.innerHTML = " d Star! 🌟";
+          end.style.color = "#d93025";
+          box.appendChild(end);
+
+          box.setAttribute('data-red', "1");
+        }
+      }
+    }
+  }
+
+  // =========================
+  // 🚀 INIT (ONE ONLY!)
+  // =========================
+  window.onload = function () {
+    setupUsername();
+    showWelcome();
+    // Populate search input with query parameter so term remains until changed
+    try {
+      var qParam = new URLSearchParams(window.location.search).get('q');
+      var inp = document.querySelector('input.legacy-input[name="q"]') || document.querySelector('input.legacy-input');
+      if (qParam) {
+        if (inp) { inp.value = qParam; localStorage.setItem('rss_last_q', qParam); }
+      } else {
+        var last = localStorage.getItem('rss_last_q');
+        if (last && inp && !inp.value) inp.value = last;
+      }
+      if (inp) {
+        var form = inp.form || document.querySelector('form');
+        if (form) form.addEventListener('submit', function () { localStorage.setItem('rss_last_q', inp.value || ''); });
+      }
+    } catch (e) { /* ignore URL parsing issues */ }
+
+    setInterval(fixStats, 400);
+    setInterval(polishRedStar, 500);
+  };
+
+})();
+</script>

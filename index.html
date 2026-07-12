@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Glorious Web Search</title>
+    <link rel="stylesheet" href="CSS+Js/style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+<div class="topbar">
+  <a href="index.html" style="font-weight: bolder;">Home</a>
+  &nbsp;|&nbsp;
+  <a href="https://www.youtube.com" target="_blank">YouTube</a>
+  <a href="https://news.google.com" target="_blank">News</a>
+  <a href="https://mail.google.com" target="_blank">Mail</a>
+  <a href="https://calendar.google.com" target="_blank">Calendar</a>
+  &nbsp;|&nbsp;
+  <a href="https://red-star-search.onrender.com" target="_blank">Access Low-Bandwidth Edition</a>
+
+  <span class="topbar-right" style="color:#0000EE">
+  Hello, Comrade <span id="usernameDisplay">Guest</span>!
+  &nbsp;|&nbsp;
+  <a href="about.html">About Red Star Search!</a>
+</span>
+</div>
+    <center>
+    <table width="100%" height="100%">
+  <tr>
+    <td align="center" valign="middle">
+
+      <!-- YOUR CONTENT START -->
+      
+      <h1 class="logo-text">
+        🌟 Red Star Search!
+      </h1>
+
+      <!-- index.html -->
+<img src="imgs/logo.png" alt="" class="logo-img">
+
+<div class="search-container">
+  <!-- Sửa action trỏ đến file kết quả của bạn -->
+  <form action="results.html" method="get">
+    <!-- Phải giữ nguyên input hidden CX để Google nhận diện bộ máy của bạn -->
+    <input type="hidden" name="cx" value="c5ed00b64fd0146ff" />
+    
+    <table cellspacing="0" cellpadding="0">
+      <tr>
+        <td>
+          <input type="text" name="q" placeholder="Search the entire web..." style="
+            width: 250px;
+            padding: 6px;
+            border: 1px solid #666;
+            box-shadow: inset 0 1px 2px #bbb;">
+            
+        </td>
+        <td style="padding-left: 12px">
+          <button type="submit" style="
+            padding: 6px 12px;
+            border: 1px solid #444;
+            background: linear-gradient(to bottom, #f8f8f8, #c0c0c0);
+            box-shadow: inset 0 1px 0 #fff;
+            cursor: pointer;
+            font-size: 14px;">
+            <strong>Search</strong>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+        <br>
+        <button type="submit" style="
+          padding: 6px 12px;
+          border: 1px solid #444;
+          width: 176px;
+          background: linear-gradient(to bottom, #f8f8f8, #c0c0c0);
+          box-shadow: inset 0 1px 0 #fff;
+          cursor: pointer;
+          font-size: 14px;">
+          Search!
+        </button>
+        <button type="button" onclick="goMobile()" style="
+          padding: 6px 12px;
+          border: 1px solid #444;
+          width: 176px;
+          background: linear-gradient(to bottom, #f8f8f8, #c0c0c0);
+          box-shadow: inset 0 1px 0 #fff;
+          cursor: pointer;
+          font-size: 14px;">
+          WAP (Mobile Version)!
+        </button>
+        <div class="info-text">
+          <p>Low bandwidth comrades? 📟</p>
+          <p>
+            For peoples that use mobile computer devices and heroic slow internet, 
+            <a href="mobile/m-index.html">click "WAP (Mobile Version)!"</a>
+          </p>
+          <br>
+            <p>
+           For those using truly ancient browsers or operating under exceptionally heroic network conditions, 
+            <a href="https://red-star-search.onrender.com">click "Access Low-Bandwidth Edition"</a>
+          </p>
+          <br>
+          <p>⚠ NOTE: Modern browsers are not permitted in the Low-Bandwidth Edition.</p>
+          <p class="tip">
+            Tip: You can change your name by clicking "Guest" in the Hello,Comrade Guest!.
+          </p>
+        </div>
+        <div class="lang-bar">
+          Red Star Search! supports those languages!:
+          <a href="#" onclick="fakeLang()">English</a> |
+          <a href="#" onclick="fakeLang()">Русский</a> |
+          <a href="#" onclick="fakeLang()">Tiếng Việt</a> |
+          <a href="#" onclick="fakeLang()">中文</a>
+        </div>
+      <!-- YOUR CONTENT END -->
+
+    </td>
+  </tr>
+</table>
+    </center>
+  </body>
+</html>
+
+<script>
+(function () {
+
+  // =========================
+  // 🟥 TITLE SYSTEM
+  // =========================
+  const query = new URLSearchParams(window.location.search).get('q');
+  document.title = query 
+    ? query + " — Glorious Red Star! 🌟"
+    : "Welcome, Comrade! — Red Star Search 🚩";
+
+
+  // =========================
+  // 🟡 CLEAN STATS FIX (STABLE)
+  // =========================
+  function fixStats() {
+    const el = document.querySelector('.gsc-result-info');
+
+    if (!el || el.dataset.done) return;
+
+    const text = el.innerText;
+    const nums = text.match(/[\d,.]+/g);
+
+    if (nums && nums.length >= 2) {
+      const count = nums[0];
+      const time = nums[nums.length - 1];
+
+      el.innerHTML = `🌟 <b>Report:</b> ${count} glorious results found for the People in ${time} seconds!`;
+
+      el.style.color = "#d93025";
+      el.style.fontWeight = "bold";
+      el.style.fontFamily = "Arial";
+
+      el.dataset.done = "1";
+    }
+  }
+
+  setInterval(fixStats, 500);
+
+
+  // =========================
+  // 🔴 R e e e e d Star FIX
+  // =========================
+ function polishRedStarPretty() {
+  const cursorBoxes = document.querySelectorAll('.gsc-cursor-box');
+
+  cursorBoxes.forEach(cursorBox => {
+    if (!cursorBox.getAttribute('data-red-star')) {
+      const pages = cursorBox.querySelectorAll('.gsc-cursor-page');
+
+      if (pages.length > 0) {
+
+        // Style the container
+        cursorBox.style.fontSize = "20px";
+        cursorBox.style.fontWeight = "bold";
+        cursorBox.style.textAlign = "center";
+        cursorBox.style.marginTop = "20px";
+
+        // Add R-
+        const rStart = document.createElement('span');
+        rStart.innerText = "R ";
+        rStart.style.color = "#d93025";
+        cursorBox.insertBefore(rStart, cursorBox.firstChild);
+
+        // Style each "e"
+        pages.forEach(page => {
+          if (page.firstChild) {
+            page.firstChild.nodeValue = "e";
+          } else {
+            page.textContent = "e";
+          }
+
+          // 👇 make them BIG and clickable
+          page.style.fontSize = "20px";
+          page.style.margin = "0 4px";
+          page.style.textDecoration = "none";
+          page.style.fontWeight = "bold";
+          page.style.color = "#1122cc"; // classic blue
+        });
+
+        // Current page highlight ⭐
+        const current = cursorBox.querySelector('.gsc-cursor-current-page');
+        if (current) {
+          current.style.color = "#ff0000";
+          current.style.fontSize = "24px";
+        }
+
+        // Add ending
+        const end = document.createElement('span');
+        end.innerText = " d Star! 🌟";
+        end.style.color = "#d93025";
+        cursorBox.appendChild(end);
+
+        cursorBox.setAttribute('data-red-star', 'true');
+      }
+    }
+  });
+}
+
+setInterval(polishRedStarPretty, 500);
+
+// run loop
+
+
+
+  // =========================
+  // 🟢 WELCOME MESSAGE
+  // =========================
+  function showWelcome() {
+    const q = new URLSearchParams(window.location.search).get('q');
+    const box = document.querySelector('.results-border-box');
+
+    if (!q && box) {
+      box.innerHTML = `
+        <div class="welcome-container">
+          <h1>Welcome, Comrade! 🌟</h1>
+          <p>The Red Star is ready to guide your search.</p>
+          <p class="hint">Type something above to begin 🚩</p>
+          <div class="star-icon">★</div>
+        </div>
+      `;
+    }
+  }
+
+  window.onload = showWelcome;
+
+
+  // =========================
+  // 👤 USERNAME SYSTEM (FIXED)
+  // =========================
+(function () {
+
+  function setupUsername() {
+    var span = document.getElementById("usernameDisplay");
+    if (!span) return;
+
+    // load saved name
+    var saved = localStorage.getItem("rss_username");
+    if (saved) span.innerHTML = saved;
+
+    span.style.cursor = "pointer";
+    span.style.textDecoration = "underline";
+    span.style.fontWeight = "bold";
+
+    span.onclick = function () {
+
+      var input = document.createElement("input");
+      input.type = "text";
+      input.value = span.innerHTML;
+      input.style.fontSize = "13px";
+      input.style.border = "1px solid #666";
+
+      span.parentNode.replaceChild(input, span);
+      input.focus();
+
+      function save() {
+        var name = input.value.replace(/^\s+|\s+$/g, "") || "Guest";
+
+        localStorage.setItem("rss_username", name);
+
+        var newSpan = document.createElement("span");
+        newSpan.id = "usernameDisplay";
+        newSpan.innerHTML = name;
+        newSpan.style.cursor = "pointer";
+        newSpan.style.textDecoration = "underline";
+        newSpan.style.fontWeight = "bold";
+
+        input.parentNode.replaceChild(newSpan, input);
+
+        // reattach
+        setupUsername();
+      }
+
+      input.onblur = save;
+      input.onkeydown = function (e) {
+        if (e.keyCode === 13) save(); // Enter key (old style)
+      };
+    };
+  }
+
+  // OLD SCHOOL LOAD (works in Chrome 52)
+  window.onload = function () {
+    setupUsername();
+  };
+
+})();
+
+})();
+
+
+function goMobile() {
+  var query = document.querySelector('input[name="q"]').value;
+
+  if (query.trim() !== "") {
+    window.location.href = "mobile/m-results.html?q=" + encodeURIComponent(query);
+  } else {
+    window.location.href = "mobile/m-index.html";
+  }
+}
+
+function fakeLang() {
+  alert("⚠️ Language pack not installed!\nPlease install Soviet Language Pack v1.0 🚩");
+}
+
+</script>
