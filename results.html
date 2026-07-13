@@ -8,50 +8,314 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />    
 </head>
 <body bgcolor="#e5e5e5">
-<div class="topbar">
-  <a href="index.html" style="font-weight: bolder;">Home</a>
-  &nbsp;|&nbsp;
-  <a href="https://www.youtube.com" target="_blank">YouTube</a>
-  <a href="https://news.google.com" target="_blank">News</a>
-  <a href="https://mail.google.com" target="_blank">Mail</a>
-  <a href="https://calendar.google.com" target="_blank">Calendar</a>
-  &nbsp;|&nbsp;
-  <a href="https://red-star-search.onrender.com" target="_blank">Access Low-Bandwidth Edition</a>
-  <span class="topbar-right" style="color:#0000EE">
-  Hello, Comrade <span id="usernameDisplay">Guest</span>!
-  &nbsp;|&nbsp;
-  <a href="about.html">About Red Star Search!</a>
-</span>
+<div class="gray-top-border">
+
 </div>
 <center>
+<!-- SEARCH HEADER -->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+
+<!-- Column 1 -->
+<td width="235" valign="top">
+
+<a href="index.html">
+<img src="imgs/icqsearch_logo2.jpg"
+     width="224"
+     height="55"
+     border="0"
+     align="absmiddle"
+     style="padding-left:5px !important;">
+</a>
+
+</td>
+
+<!-- Column 2 -->
+<td valign="top">
+
+<div class="icq-tabs">
+
+<a href="javascript:void(0)" onclick="changeTab(0)">Web</a>
+
+&nbsp;&nbsp;
+
+<a href="javascript:void(0)" onclick="changeTab(1)">Images</a>
+
+
+
+&nbsp;&nbsp;
+
+<div class="more-menu">
+
+    <a href="javascript:void(0);" onclick="return toggleMore(event);">
+        More
+        <img src="imgs/arrow_mg.gif" border="0">
+    </a>
+
+    <div id="moreDropdown" class="more-dropdown">
+
+        <a href="#">Presentations</a>
+        <a href="#">Documents</a>
+        <a href="#">ICQ.com</a>
+        <a href="#">Translation</a>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="search-container">
+
+<form action="results.html" method="get">
+
+<input type="hidden"
+       name="cx"
+       value="c5ed00b64fd0146ff">
+
+<table cellspacing="0" cellpadding="0">
+
+<tr>
+
+<td>
+
+<input
+id="searchBox"
+type="text"
+name="q"
+size="41"
+style="width:324px;height:21px;">
+
+</td>
+
+<td style="padding-left:2px;">
+
+<input
+class="search-img"
+type="image"
+src="imgs/search_butt2.gif"
+width="100"
+height="23">
+
+</td>
+
+</tr>
+
+</table>
+
+</form>
+
+</div>
+
+</td>
+
+<!-- Column 3 -->
+
+<td width="180"
+    valign="top"
+    align="right">
+
+
+<div style="font-size: 12px; position: absolute; right: 0;top:0;">Go to:&nbsp;<a href="https://web.archive.org/web/20070310093437/http://www.icq.com/" class="d1-link" style="color:#0000CE">www.icq.com</a>⠀</div>
+
+</td>
+
+</tr>
+
+</table>
+
+<script>
+function changeTab(tab) {
+
+    var timer = setInterval(function () {
+
+        var tabs = document.querySelectorAll(".gsc-tabHeader");
+
+        if (tabs.length > tab) {
+
+            clearInterval(timer);
+
+            tabs[tab].click();
+
+        }
+
+    }, 100);
+
+}
+
+
+document.addEventListener("click",function(e){
+
+if(!e.target.closest(".more-menu")){
+
+document.getElementById("moreDropdown").style.display="none";
+
+
+}
+
+});
+
+function toggleMore(e){
+
+    if(e){
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    var box = document.getElementById("moreDropdown");
+
+    box.style.display =
+        (box.style.display === "block")
+        ? "none"
+        : "block";
+
+    return false;
+}
+
+document.addEventListener("click", function(e){
+
+    if(!e.target.closest(".more-menu")){
+        document.getElementById("moreDropdown").style.display = "none";
+    }
+
+});
+
+
+
+// restore last search
+var inp=document.getElementById("searchBox");
+
+var qParam=new URLSearchParams(location.search).get("q");
+
+if(qParam){
+
+inp.value=qParam;
+
+localStorage.setItem("rss_last_q",qParam);
+
+}else{
+
+inp.value=localStorage.getItem("rss_last_q")||"";
+
+}
+
+// PART 
+
+function updateICQHeader() {
+
+    // keyword
+    if (qParam) {
+        document.getElementById("icqKeyword").textContent = qParam;
+    }
+
+    // wait until Google creates the result info
+    var info = document.querySelector(".gsc-result-info");
+    if (!info) return;
+
+    // Grab every number from the text
+    var nums = info.textContent.match(/[\d,.]+/g);
+
+    if (!nums || nums.length === 0) return;
+
+    // Usually the biggest number is the total results
+    var total = nums[0];
+
+    // page
+    var page = 1;
+
+    var hash = new URLSearchParams(location.hash.substring(1));
+
+    if (hash.has("gsc.page")) {
+        page = parseInt(hash.get("gsc.page"), 10) || 1;
+    }
+
+    var start = (page - 1) * 10 + 1;
+    var end = start + 9;
+
+    document.getElementById("icqStats").innerHTML =
+        "Results <b>" + start + " - " + end +
+        "</b> of about <b>" + total + "</b>";
+  document.getElementById("icqStatsBottom").innerHTML =
+        "Results <b>" + start + " - " + end +
+        "</b> of about <b>" + total + "</b>";
+}
+
+var icqTimer = setInterval(function () {
+
+    if (document.querySelector(".gsc-result-info")) {
+
+        updateICQHeader();
+
+    }
+
+    
+}, 300);
+
+
+function cleanURLs() {
+
+    document.querySelectorAll(".gs-visibleUrl-long").forEach(function(el){
+
+        el.innerHTML = el.innerHTML
+            .replace(/^https?:\/\//i, "")
+            .replace(/^www\./i, "");
+
+    });
+
+}
+
+setInterval(cleanURLs, 300);
+
+
+</script>
+
     <!-- Bảng chính bao quanh toàn bộ nội dung 800px -->
-    <table width="800" border="0" cellpadding="0" cellspacing="0" style="margin-top: 20px;">
+
+    <br>
+<table class="t2">
+
+<tr>
+
+<td class="t2-1">
+
+<div class="t2-1-1">
+
+Web Search for:
+<b id="icqKeyword"></b>
+
+</div>
+
+</td>
+
+<td class="t2-2">
+
+<div id="icqStats">
+
+Results
+<b>1 - 10</b>
+of about
+<b>0</b>
+
+</div>
+
+</td>
+
+</tr>
+
+</table>
+
+
+</center>
+<div class="more_sp3">
+    <div id="icqStatsBottom">
+        Results <b>1 - 10</b> of about <b>0</b>
+    </div>
+</div>
+
         
-        <!-- HÀNG 1: THANH SEARCH XÁM -->
-        <tr>
-            <td>
-                <div class="legacy-search-container">
-                    <form action="results.html" method="get" style="margin: 0; padding: 0;">
-                        <input type="hidden" name="cx" value="c5ed00b64fd0146ff">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td width="1" style="padding-right: 15px;">
-                                    <a href="index.html">
-                                        <img src="imgs/badge.png" border="0" alt="Logo" style="display: block;">
-                                    </a>
-                                </td>
-                                <td>
-                                    <input type="text" name="q" class="legacy-input" placeholder="Search the entire web...">
-                                </td>
-                                <td width="1" style="padding-left: 10px;">
-                                    <input type="submit" value="Search" class="legacy-glossy-button">
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
-            </td>
-        </tr>
+
 
         <!-- HÀNG 2: VIỀN ĐEN KẾT QUẢ -->
         <tr>
@@ -73,7 +337,6 @@
             </td>
         </tr>
     </table>
-</center>
 
 </body>
 </html>
