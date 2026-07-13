@@ -144,66 +144,68 @@
   setInterval(fixStats, 500);
 
 
-  // =========================
-  // 🔴 R e e e e d Star FIX
-  // =========================
- function polishRedStarPretty() {
-  const cursorBoxes = document.querySelectorAll('.gsc-cursor-box');
+function polishICQPagination(){
 
-  cursorBoxes.forEach(cursorBox => {
-    if (!cursorBox.getAttribute('data-red-star')) {
-      const pages = cursorBox.querySelectorAll('.gsc-cursor-page');
+    document.querySelectorAll(".gsc-cursor-box").forEach(function(box){
 
-      if (pages.length > 0) {
+        if(box.dataset.icqDone) return;
 
-        // Style the container
-        cursorBox.style.fontSize = "20px";
-        cursorBox.style.fontWeight = "bold";
-        cursorBox.style.textAlign = "center";
-        cursorBox.style.marginTop = "20px";
+        box.dataset.icqDone = "1";
 
-        // Add R-
-        const rStart = document.createElement('span');
-        rStart.innerText = "R ";
-        rStart.style.color = "#d93025";
-        cursorBox.insertBefore(rStart, cursorBox.firstChild);
+        box.className = "pg";
 
-        // Style each "e"
-        pages.forEach(page => {
-          if (page.firstChild) {
-            page.firstChild.nodeValue = "e";
-          } else {
-            page.textContent = "e";
-          }
+        var pages = box.querySelectorAll(".gsc-cursor-page");
 
-          // 👇 make them BIG and clickable
-          page.style.fontSize = "20px";
-          page.style.margin = "0 4px";
-          page.style.textDecoration = "none";
-          page.style.fontWeight = "bold";
-          page.style.color = "#1122cc"; // classic blue
+        pages.forEach(function(page,i){
+
+            page.textContent = i + 1;
+
+            page.style.color = "#3F9220";
+            page.style.fontSize = "15px";
+            page.style.fontWeight = "normal";
+            page.style.marginRight = "8px";
+            page.style.display = "inline";
+            page.style.cursor = "pointer";
         });
 
-        // Current page highlight ⭐
-        const current = cursorBox.querySelector('.gsc-cursor-current-page');
-        if (current) {
-          current.style.color = "#ff0000";
-          current.style.fontSize = "24px";
+        // Current page
+        var current = box.querySelector(".gsc-cursor-current-page");
+
+        if(current){
+            current.style.fontWeight = "bold";
+            current.style.textDecoration = "none";
         }
 
-        // Add ending
-        const end = document.createElement('span');
-        end.innerText = " d Star! 🌟";
-        end.style.color = "#d93025";
-        cursorBox.appendChild(end);
+        // Next button
+        var next = document.createElement("img");
 
-        cursorBox.setAttribute('data-red-star', 'true');
-      }
-    }
-  });
+        next.src = "imgs/right_new.gif";
+        next.width = 17;
+        next.height = 17;
+        next.style.verticalAlign = "middle";
+        next.style.marginLeft = "10px";
+        next.style.cursor = "pointer";
+
+        next.onclick = function(){
+
+            var current =
+                box.querySelector(".gsc-cursor-current-page");
+
+            if(current && current.nextElementSibling){
+
+                current.nextElementSibling.click();
+
+            }
+
+        };
+
+        box.appendChild(next);
+
+    });
+
 }
 
-setInterval(polishRedStarPretty, 500);
+setInterval(polishICQPagination,300);
 
 // run loop
 

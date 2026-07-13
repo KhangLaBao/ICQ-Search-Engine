@@ -42,6 +42,16 @@ https://github.com/KhangLaBao/Red-Star-Search
 
 ---
 
+## Credits
+
+This project uses Google Programmable Search Engine (Custom Search Engine) as its search backend.
+
+The user interface is an original recreation inspired by the appearance of ICQ Search (2007), based on archived pages preserved by the Internet Archive's Wayback Machine.
+
+Special thanks to the Internet Archive for preserving historical web pages that made recreating this interface possible.
+
+---
+
 ## Technologies
 
 - HTML5

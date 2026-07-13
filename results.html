@@ -95,7 +95,7 @@ style="width:324px;height:21px;">
 <input
 class="search-img"
 type="image"
-src="imgs/search_butt2.gif"
+src="imgs/buttonsearch2.png"
 width="100"
 height="23">
 
@@ -268,6 +268,24 @@ function cleanURLs() {
 
 setInterval(cleanURLs, 300);
 
+function hideGoogleBranding(){
+
+    document.querySelectorAll(
+        ".gcsc-find-more-on-google," +
+        ".gcsc-branding," +
+        ".gcsc-branding-clickable," +
+        ".gcsc-branding-text," +
+        ".gcsc-branding-img," +
+        ".gcsc-branding-img-noclear"
+    ).forEach(function(el){
+
+        el.style.display = "none";
+
+    });
+
+}
+
+setInterval(hideGoogleBranding,300);
 
 </script>
 
@@ -328,15 +346,60 @@ of about
         </tr>
 
         <!-- HÀNG 3: FOOTER -->
-        <tr>
-            <td style="padding-top: 15px; text-align: left;">
-                <font face="Arial" size="2" color="#666">
-                    <a href="index.html" style="color: #1122cc; text-decoration: none;">« Back to Home</a> | 
-                    Powered by Google Programmable Search Engine
-                </font>
-            </td>
-        </tr>
+        
     </table>
+<table class="t3-2" cellpadding="0" cellspacing="0">
+<tr>
+
+    <td class="t3-2-1">&nbsp;</td>
+
+    <td>
+
+        <form id="searchForm" action="results.html" method="GET">
+
+            <input type="hidden" name="cx" value="c5ed00b64fd0146ff">
+
+            <table cellpadding="0" cellspacing="0">
+            <tr>
+
+                <td>
+
+                    <input
+                        id="searchBox"
+                        type="text"
+                        name="q"
+                        size="41"
+                        maxlength="100"
+                        class="legacy-search-input">
+
+                </td>
+
+                <td style="transform: translateX(-20px);">
+
+                    <input
+                        class="search-img"
+                        type="image"
+                        src="imgs/buttonsearch2.png"
+                        width="100"
+                        height="23">
+
+                </td>
+
+            </tr>
+            </table>
+
+        </form>
+
+    </td>
+
+    <td class="t3-2-2">&nbsp;</td>
+
+</tr>
+</table>
+
+<center><div class="copyr">Copyright © 1998-2007 ICQ Inc. All Rights Reserved</div></center>
+
+<br>
 
 </body>
 </html>
@@ -440,40 +503,71 @@ of about
   // =========================
   // 🔴 PAGINATION STYLE
   // =========================
-  function polishRedStar() {
-    var boxes = document.querySelectorAll('.gsc-cursor-box');
+function polishICQPagination(){
 
-    for (var i = 0; i < boxes.length; i++) {
-      var box = boxes[i];
+    document.querySelectorAll(".gsc-cursor-box").forEach(function(box){
 
-      if (!box.getAttribute('data-red')) {
-        var pages = box.querySelectorAll('.gsc-cursor-page');
+        if(box.dataset.icqDone) return;
 
-        if (pages.length > 0) {
-          box.style.fontSize = "20px";
-          box.style.fontWeight = "bold";
-          box.style.textAlign = "center";
+        box.dataset.icqDone = "1";
 
-          var start = document.createElement('span');
-          start.innerHTML = "R ";
-          start.style.color = "#d93025";
-          box.insertBefore(start, box.firstChild);
+        box.className = "pg";
 
-          for (var j = 0; j < pages.length; j++) {
-            pages[j].innerHTML = "e";
-            pages[j].style.margin = "0 4px";
+        var pages = box.querySelectorAll(".gsc-cursor-page");
+
+        pages.forEach(function(page,i){
+
+            page.textContent = i + 1;
+
+            page.style.color = "#3F9220";
+            page.style.fontSize = "15px";
+            page.style.fontWeight = "normal";
+            page.style.marginRight = "8px";
+            page.style.display = "inline";
+            page.style.cursor = "pointer";
+        });
+
+          // Current page
+          var current = box.querySelector(".gsc-cursor-current-page");
+
+          if(current){
+              current.style.fontWeight = "bold";
+              current.style.textDecoration = "none";
           }
 
-          var end = document.createElement('span');
-          end.innerHTML = " d Star! 🌟";
-          end.style.color = "#d93025";
-          box.appendChild(end);
+          // Find Google's next page (if it exists)
+          var nextGoogle = box.querySelector(".gsc-cursor-page.gsc-cursor-next");
 
-          box.setAttribute('data-red', "1");
-        }
-      }
+          // Fallback: use the page after the current one
+          if(!nextGoogle && current){
+              nextGoogle = current.nextElementSibling;
+          }
+
+          // Next button
+          var next = document.createElement("img");
+        next.src = "imgs/right_new.gif";
+        next.width = 17;
+        next.height = 17;
+        next.style.verticalAlign = "middle";
+        next.style.marginLeft = "10px";
+        next.style.cursor = "pointer";
+
+       next.onclick = function(){
+
+    if(nextGoogle){
+        nextGoogle.click();
     }
-  }
+
+};
+
+        box.appendChild(next);
+
+    });
+
+}
+
+setInterval(polishICQPagination,300);
+
 
   // =========================
   // 🚀 INIT (ONE ONLY!)
