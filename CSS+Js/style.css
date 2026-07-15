@@ -32,11 +32,10 @@ body {
 
 .d3-1 {
   position: relative;
-  height: 20px;
   text-align: left;
   font-size: 13px;
   display: flex;
-  gap: 10px;
+  left:5px;
   color: rgb(0, 0, 204);
 }
 
@@ -282,7 +281,7 @@ a.d1-link:visited {
   position: relative;
   top: 1px; /* 1px lower to match the 2007 ICQ look */
   display: block;
-  width: 100px;
+  width: 89px;
   height: 23px;
   border: 0;
 }
@@ -549,6 +548,11 @@ body {
   vertical-align: middle;
 }
 
+.tbar {
+  width: 100%;
+  margin-top: 17px;
+}
+
 .gsc-results-wrapper-visible,
 .gsc-resultsRoot,
 .gsc-wrapper,
@@ -717,10 +721,206 @@ body {
   color: #000;
 }
 
+/* ===== ICQ Search Box (Late 2007) ===== */
+
+.d2-2-2{
+    border-collapse:collapse;
+}
+
+.d2-2-2-1-txt{
+    width:280px;
+    height:21px;
+    padding:0 3px;
+    position: relative;
+    left: 31px;
+    font:13px Arial, Helvetica, sans-serif;
+
+}
+
+.button-td{
+    position: relative;
+    left:21px;
+    vertical-align:middle;
+}
+
+.search-img{
+    border:0;
+    cursor:pointer;
+    vertical-align:middle;
+}
+
+.d2-2-2-3{
+    padding-left:8px;
+    white-space:nowrap;
+
+    font:11px Arial, Helvetica, sans-serif;
+    vertical-align:middle;
+    position: relative;
+    left: 15px;
+    top: 4px
+}
+
+/*---------------------------------------
+Tabs
+---------------------------------------*/
+
+.d3-1{
+
+    font:13px Arial;
+
+}
+
+.d3-1-1{
+
+    display:inline-block;
+    margin-right:10px;
+
+    color:#0000CC;
+
+    text-decoration:underline;
+
+    cursor:pointer;
+
+}
+
+.active-tab{
+
+    color:#000 !important;
+
+    font-weight:bold;
+
+    text-decoration:none !important;
+
+}
+
+
+/*---------------------------------------
+RSS NEW badge
+---------------------------------------*/
+
+.rss-tab{
+
+    position:relative;
+
+
+
+}
+
+.rss-new{
+
+    position:absolute;
+
+    top:-16px;
+
+    left:7px;
+
+    border:0;
+
+}
+
+
+/*---------------------------------------
+More
+---------------------------------------*/
+
+.more-menu{
+
+    display:inline-block;
+
+    position:relative;
+
+}
+
+.more-menu>a{
+
+    color:#0000CC;
+
+    text-decoration:underline;
+
+}
+
+.more-menu>a.active-tab{
+
+    color:#000;
+
+    font-weight:bold;
+
+    text-decoration:none;
+
+}
+
+.more-dropdown{
+
+    position:absolute;
+
+    display:none;
+
+    top:20px;
+
+    left:0;
+
+    background:#fff;
+
+    border:1px solid #808080;
+
+ 
+
+    z-index:9999;
+
+}
+
+.more-dropdown a{
+
+    display:block;
+
+    padding:4px 8px;
+
+    color:#4040D9;
+
+    text-decoration:none;
+
+    font:13px Arial;
+
+}
+
+.more-dropdown a:hover{
+
+    background:#E8EEF9;
+
+}
+
+
+/*---------------------------------------
+Advanced Search
+---------------------------------------*/
+
+.d2-2-3{
+
+    margin-top:7px;
+
+    font-size:11px;
+
+    visibility:visible;
+
+}
+
+
+.d2-2-2-3 a{
+    color:#0000CC;
+    text-decoration:underline;
+}
+
+.d2-2-2-3 a:hover{
+    color:#0000CC;
+}
+
+
 #icqStatsBottom {
   margin: 0;
   padding: 0;
   line-height: 16px;
+  position: relative;
+  left:5px
 }
 
 .welcome-container {
@@ -852,74 +1052,337 @@ body {
   text-decoration: underline;
 }
 
-/* Ép màu xanh cho mọi thành phần văn bản trong kết quả hình ảnh */
+/* 2007 ICQ "No Results" */
+
+.nor1,
+.nor2,
+.nor3{
+    font:11px Arial,sans-serif;
+    color:#000;
+    margin:0;
+    padding:0;
+    line-height:16px;
+}
+
+.nor1{
+    font-weight:normal;
+}
+
+.nor1 b{
+    font-weight:bold;
+}
+
+.nor2{
+    font-weight:bold;
+}
+
+.nor3 ul{
+    margin:0;
+    padding-left:22px;   /* only indentation */
+    list-style:disc;
+}
+
+.nor3 li{
+    margin:0;
+    padding:0;
+    line-height:16px;
+}
+
+/* Remove all outer spacing from Google CSE */
+.gsc-control-cse,
+.gsc-control-cse-vi {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+/* ===========================================================
+   RED STAR SEARCH
+   ICQ IMAGE SEARCH 2007 RECONSTRUCTION
+   Google Custom Search Engine Compatible
+   =========================================================== */
+
+
+/* -----------------------------------------------------------
+   IMAGE GRID
+   (Don't touch Google's layout)
+   ----------------------------------------------------------- */
+
+.gsc-imageResult{
+    background:transparent !important;
+    border:none !important;
+    box-shadow:none !important;
+}
+
+
+/* -----------------------------------------------------------
+   THUMBNAILS
+   ----------------------------------------------------------- */
+
+.gs-image,
+.gs-image-scalable,
+.gs-imagePreview{
+
+    border:1px solid #008200 !important;
+    background:#ffffff !important;
+
+    border-radius:0 !important;
+    box-shadow:none !important;
+}
+
+
+/* -----------------------------------------------------------
+   IMAGE TITLE
+   ----------------------------------------------------------- */
+
 .gsc-imageResult .gs-title,
 .gsc-imageResult .gs-title *,
+.gs-previewTitle,
+.gs-previewTitle *,
+.gs-previewLink{
+
+    color:#0000CC !important;
+
+    font-family:Arial,Helvetica,sans-serif !important;
+
+    font-size:13px !important;
+
+    font-weight:normal !important;
+
+    text-decoration:none !important;
+}
+
+.gsc-imageResult .gs-title:hover,
+.gsc-imageResult .gs-title a:hover,
+.gs-previewLink:hover{
+
+    text-decoration:underline !important;
+}
+
+
+/* -----------------------------------------------------------
+   IMAGE DESCRIPTION
+   ----------------------------------------------------------- */
+
 .gsc-imageResult .gs-snippet,
-.gsc-imageResult .gs-snippet * {
-  color: #77aaff !important;
-  text-decoration: none !important;
-  font-family: Arial, Helvetica, sans-serif !important;
-  font-weight: bold !important;
+.gsc-imageResult .gs-snippet *{
+
+    color:#000000 !important;
+
+    font-family:Arial,Helvetica,sans-serif !important;
+
+    font-size:11px !important;
+
+    line-height:15px !important;
+
+    font-weight:normal !important;
 }
 
-/* Chỉ hiện gạch chân khi di chuột vào */
-.gsc-imageResult:hover .gs-title,
-.gsc-imageResult:hover .gs-snippet {
-  text-decoration: underline !important;
+
+/* -----------------------------------------------------------
+   URL
+   ----------------------------------------------------------- */
+
+.gs-visibleUrl,
+.gs-visibleUrl-short,
+.gs-previewUrl{
+
+    color:#008200 !important;
+
+    font-size:11px !important;
+
+    font-family:Arial,Helvetica,sans-serif !important;
+
+    text-decoration:none !important;
+
+    border:none !important;
+
+    margin-top:4px !important;
+
+    margin-bottom:4px !important;
+
+    padding:0 !important;
 }
 
-/* 1. Style Tiêu đề trong khung xem trước (Preview) */
-.gs-previewLink {
-  color: #8ab4f8 !important; /* Xanh Light Blue đậm hơn một chút để nổi bật */
-  font-size: 20px !important;
-  font-weight: bold !important;
-  font-family: Arial, sans-serif !important;
-  margin-bottom: 10px !important;
+
+/* -----------------------------------------------------------
+   IMAGE SIZE
+   ----------------------------------------------------------- */
+
+.gs-previewSize{
+
+    color:#666666 !important;
+
+    font-size:11px !important;
+
+    font-family:Arial,Helvetica,sans-serif !important;
+
+    margin-top:3px !important;
+
+    font-weight:normal !important;
 }
 
-/* 2. Style Đường dẫn (URL) cho rực rỡ */
-.gs-previewUrl {
-  color: #32cd32 !important; /* Xanh lá rực rỡ */
-  font-size: 14px !important;
-  border-bottom: 1px solid #444; /* Thêm đường kẻ dưới để bớt trống */
-  padding-bottom: 8px !important;
-  display: block !important;
+
+/* -----------------------------------------------------------
+   PREVIEW PANEL
+   ----------------------------------------------------------- */
+
+.gs-imagePreviewArea{
+
+    background:#ffffff !important;
+
+    border:1px solid #6dc4a2 !important;
+
+    padding:12px !important;
+
+    box-shadow:none !important;
+
+    border-radius:0 !important;
 }
 
-/* 3. Style Thông số kỹ thuật (Metadata) */
-.gs-previewSize {
-  color: #ffffff !important; /* Trắng tinh khiết */
-  font-size: 13px !important;
-  margin-top: 10px !important;
+
+/* Preview info box */
+
+.gs-previewSnippet{
+
+    background:#ffffff !important;
+
+    border:none !important;
+
+    padding-top:10px !important;
+
+    font-family:Arial,Helvetica,sans-serif !important;
 }
 
-.gs-previewLink:hover {
-  text-decoration: underline !important;
+
+/* -----------------------------------------------------------
+   REMOVE MATERIAL DESIGN EFFECTS
+   ----------------------------------------------------------- */
+
+.gs-imageBox,
+.gsc-thumbnail-inside,
+.gsc-thumbnail,
+.gsc-imageResult-classic{
+
+    background:none !important;
+
+    border:none !important;
+
+    box-shadow:none !important;
+
+    border-radius:0 !important;
 }
 
-/* 2. Đường dẫn URL (Sắc nét) */
-.gs-previewUrl {
-  color: #32cd32 !important; /* Xanh lá Soviet rực rỡ */
-  font-size: 15px !important;
-  font-family: Arial !important;
-  border-bottom: 1px solid #444 !important; /* Đường kẻ phân cách cho bớt trống */
-  padding-bottom: 10px !important;
-  margin-bottom: 10px !important;
-  display: block !important;
+.gsc-imageResult:hover{
+
+    background:transparent !important;
+
+    box-shadow:none !important;
 }
 
-/* 3. Thông số kích thước (Màu bạc) */
-.gs-previewSize {
-  color: #cccccc !important; /* Màu xám bạc dễ đọc */
-  font-size: 13px !important;
-  font-weight: normal !important;
+
+/* -----------------------------------------------------------
+   SPACING
+   ----------------------------------------------------------- */
+
+.gs-title{
+
+    margin-top:8px !important;
 }
 
-/* 4. Mẹo: Thêm "Viền đỏ thiết quân luật" cho khung Preview */
-.gs-previewSnippet {
-  border: 2px solid #444 !important; /* Viền ngoài cứng cáp */
-  border-left: 5px solid #d93025 !important; /* Điểm nhấn đỏ Soviet bên trái */
-  background-color: #1a1a1a !important; /* Nền tối sâu để làm nổi bật ảnh */
-  padding: 20px !important;
+.gs-visibleUrl{
+
+    margin-top:2px !important;
 }
+
+.gs-snippet{
+
+    margin-top:3px !important;
+}
+
+
+/* -----------------------------------------------------------
+   LINKS
+   ----------------------------------------------------------- */
+
+a{
+
+    color:#0000CC;
+}
+
+a:hover{
+
+    text-decoration:underline;
+}
+
+
+/* -----------------------------------------------------------
+   REMOVE GOOGLE CARD EFFECTS
+   ----------------------------------------------------------- */
+
+.gsc-thumbnail-inside,
+.gsc-url-top,
+.gsc-result-info,
+.gsc-control-cse{
+
+    box-shadow:none !important;
+
+    border-radius:0 !important;
+}
+
+
+/* -----------------------------------------------------------
+   PREVIEW IMAGE
+   ----------------------------------------------------------- */
+
+.gs-imagePreview{
+
+    margin-bottom:10px !important;
+
+    border:1px solid #008200 !important;
+
+    background:#ffffff !important;
+}
+
+
+/* -----------------------------------------------------------
+   FONT RESET
+   ----------------------------------------------------------- */
+
+.gsc-control-cse,
+.gsc-results,
+.gs-title,
+.gs-snippet,
+.gs-previewSnippet,
+.gs-previewDescription,
+.gs-previewUrl,
+.gs-previewSize{
+
+    font-family:Arial,Helvetica,sans-serif !important;
+}
+
+
+/* -----------------------------------------------------------
+   OPTIONAL RED STAR THEME
+   Uncomment if desired
+
+.gs-previewSnippet{
+    background:#1b1b1b !important;
+    border-left:4px solid #d93025 !important;
+    padding:16px !important;
+}
+
+.gs-previewTitle,
+.gs-previewLink{
+    color:#77aaff !important;
+}
+
+.gs-previewDescription{
+    color:#dddddd !important;
+}
+
+.gs-previewSize{
+    color:#bbbbbb !important;
+}
+
+----------------------------------------------------------- */

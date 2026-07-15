@@ -1,0 +1,348 @@
+var _____WB$wombat$assign$function_____=function(name){return (globalThis._wb_wombat && globalThis._wb_wombat.local_init && globalThis._wb_wombat.local_init(name))||globalThis[name];};if(!globalThis.__WB_pmw){globalThis.__WB_pmw=function(obj){this.__WB_source=obj;return this;}}{
+let window = _____WB$wombat$assign$function_____("window");
+let self = _____WB$wombat$assign$function_____("self");
+let document = _____WB$wombat$assign$function_____("document");
+let location = _____WB$wombat$assign$function_____("location");
+let top = _____WB$wombat$assign$function_____("top");
+let parent = _____WB$wombat$assign$function_____("parent");
+let frames = _____WB$wombat$assign$function_____("frames");
+let opener = _____WB$wombat$assign$function_____("opener");
+// Browser Detection
+var detect = navigator.userAgent.toLowerCase();
+var gl_os,gl_browser,gl_version,gl_total,thestring;
+
+if (checkIt('konqueror'))
+{
+	gl_browser = "Konqueror";
+	gl_os = "Linux";
+}
+else if (checkIt('safari')) gl_browser = "Safari"
+else if (checkIt('omniweb')) gl_browser = "OmniWeb"
+else if (checkIt('opera')) gl_browser = "Opera"
+else if (checkIt('webtv')) gl_browser = "WebTV";
+else if (checkIt('icab')) gl_browser = "iCab"
+else if (checkIt('msie')) gl_browser = "Internet Explorer"
+else if (!checkIt('compatible'))
+{
+	gl_browser = "Netscape Navigator"
+	gl_version = detect.charAt(8);
+}
+else gl_browser = "An unknown browser";
+
+if (!gl_version) gl_version = detect.charAt(place + thestring.length);
+
+if (!gl_os)
+{
+	if (checkIt('linux')) gl_os = "Linux";
+	else if (checkIt('x11')) gl_os = "Unix";
+	else if (checkIt('mac')) gl_os = "Mac"
+	else if (checkIt('win')) gl_os = "Windows"
+	else os = "an unknown operating system";
+}
+
+function checkIt(string)
+{
+	place = detect.indexOf(string) + 1;
+	thestring = string;
+	return place;
+}
+// End Browser Detection.
+
+//alert(gl_browser + " " + gl_version + " " + gl_os);
+
+function win98_header(section_id)
+{
+	if(gl_browser == "Internet Explorer" && gl_version < 6)
+	{
+//		alert("You are using Internet Exploder which is less than 6\nThis means - NO HEADER FOR YOU!");
+		document.getElementById("h6-ie5").style.display = "block";
+//		document.getElementById("h5").style.color = "#000000";
+		document.getElementById("h6-ie5").style.backgroundColor = navbut_colors[section_id];
+	}
+	else
+	{
+		document.getElementById("h6").style.display = "block";
+	}
+}
+
+
+function ClearSearch() 
+{
+	if((document.Search.search_keyword.value == "Enter Keyword")  || (document.Search.search_keyword.value == "Search"))
+	{
+		document.Search.search_keyword.value = "";
+	}
+}
+
+function set_order(order, prod_id)
+{
+	var expireDate = new Date;
+	expireDate.setDate(expireDate.getDate()+1);
+	SetCookie(prod_id + "_order", order, expireDate);
+	document.location.reload();
+}
+
+function set_language(lang, prod_id)
+{
+	var expireDate = new Date;
+	expireDate.setDate(expireDate.getDate()+1);
+	SetCookie(prod_id + "_lang", lang, expireDate);
+	document.location.reload();
+}
+
+// D3 Search
+
+//this function check if need to just change the range status or change the status and do the search  
+function searchChange(id)
+{
+	document.getElementById(id).checked = true;
+}
+
+
+/*
+function changeFocus(id)
+{
+	document.getElementById("h2-2-1").style.fontWeight = "normal";
+	document.getElementById("h2-2-2").style.fontWeight = "normal";
+	document.getElementById("h2-2-3").style.fontWeight = "normal";
+	document.getElementById(id).style.fontWeight = "bold";
+}
+*/
+
+function get_url(link_url, blank)
+{
+	if(blank)
+	{
+		var wref = window.open(link_url);
+	}
+	else
+	{
+		document.location.href = link_url;
+	}
+}
+
+function clear_recent(product_id)
+{
+	DeleteCookie('recent_' + product_id);
+	document.location.reload();
+}
+
+
+// ICQMail related --------------------------------------------------------------------
+	var gl_user_uin = 0;
+	var gl_user_sk = 0;
+	function icqmail_get_uin () 
+	{
+//		try {
+			var dat = GetCookie("karma_ud");
+
+			if ( !dat ) { return false; }
+			var dat = dat.split(',');
+			//alert(dat);
+			gl_user_uin = dat[0];
+			gl_user_sk = dat[1];
+
+			gl_user_uin = gl_user_uin.split('=');
+			gl_user_uin = gl_user_uin[1];
+
+			gl_user_sk = gl_user_sk.split('=');
+			gl_user_sk = gl_user_sk[1];
+
+//		 } catch(e) { }
+	}
+
+	function get_user_data ( user_uin , user_sk) 
+	{
+		html = '<iframe id="icqmail_inf" frameborder="0" width="1" height="1" style="border: 0px;background-color: #FFFFFF" src="/include/icqmail/mail_ifrm.php?uin='+ user_uin +'&sk='+ user_sk +'"></iframe>';
+		document.write(html);
+	}	
+
+/* Start Top Navigation menu */ 
+
+	function initNavButton(button)
+	{
+		var but = document.getElementById('navbut_' + button);
+		var but_e = document.getElementById('navbut_' + button + '_e');
+		var but_s = document.getElementById('navbut_' + button + '_s');
+		try{
+			but.onmouseout = null;
+			but.onmouseover = null;
+
+			but_e.style.display = "none";
+			but_s.style.display = "block";
+			but.style.top = "0px";
+		}
+		catch(e){}
+	}
+	
+	function nav_over(button)
+	{
+		var but_e = document.getElementById('navbut_' + button + '_e');
+		var but_s = document.getElementById('navbut_' + button + '_s');
+		but_e.style.display = "none";
+		but_s.style.display = "block";
+	}
+
+	function nav_out(button)
+	{
+		var but_e = document.getElementById('navbut_' + button + '_e');
+		var but_s = document.getElementById('navbut_' + button + '_s');
+		but_e.style.display = "block";
+		but_s.style.display = "none";
+	}
+/* End top navigation menu */	
+
+//Java script cookie lib
+
+function getCookieVal ( offset ) {
+  var endstr = document.cookie.indexOf (";", offset);
+  if ( endstr == -1 )
+    endstr = document.cookie.length;
+  return unescape(document.cookie.substring(offset, endstr));
+}
+
+function SetCookie ( name, value, expires, path, domain, secure ) {
+  if ( name.length == 0 ) return;
+
+  document.cookie = name + "=" + escape (value) +
+    ((expires) ? "; expires=" + expires.toGMTString() : "Never") +
+    ((path) ? "; path=" + path : "") +
+    ((domain) ? "; domain=" + domain : "") +
+    ((secure) ? "; secure" : "");
+}
+
+function GetCookie ( name ) {
+  if ( name.length == 0 ) return null;
+  var arg = name + "=";
+  var alen = arg.length;
+  var clen = document.cookie.length;
+  var i = 0;
+  while ( i < clen ) {
+    var j = i + alen;
+    if ( document.cookie.substring(i, j) == arg ) {
+      return getCookieVal (j);
+	}
+    i = document.cookie.indexOf(" ", i) + 1;
+    if ( i == 0 ) break;
+  }
+ 
+ 	 return null;
+}
+
+function DeleteCookie ( name,path,domain ) {
+  if (GetCookie(name)) {
+    document.cookie = name + "=" +
+      ((path) ? "; path=" + path : "") +
+      ((domain) ? "; domain=" + domain : "") +
+      "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+  }
+}
+
+function FixCookieDate ( date ) {
+  var base = new Date(0);
+  var skew = base.getTime(); // dawn of (Unix) time - should be 0
+  if (skew > 0)  // Except on the Mac - ahead of its time
+    date.setTime (date.getTime() - skew);
+}
+
+/* end cookie lib */
+
+/* Query Lib */
+gl_query = this.location.href;
+var gl_inq = gl_query.indexOf('?');
+gl_query = gl_query.substring(gl_inq + 1);
+
+if (gl_inq > 0) {
+	gl_query_string = gl_query; 
+}
+
+var gl_temp_str = "&";
+var gl_query_len = gl_query.length, gl_temp_len = gl_temp_str.length;
+
+var i = gl_query.indexOf(gl_temp_str);
+
+while (i+gl_temp_len < gl_query_len) {
+	if (i > 0) {
+		split_query(gl_query.substring(0,i),"=");
+	} else {
+		split_query(gl_query,"=");
+	}
+	gl_query = gl_query.substring(i+gl_temp_len,gl_query_len);
+	var i = gl_query.indexOf(gl_temp_str);
+	if (i < 1) {
+		i = gl_query_len + 1; // end while
+	}
+}
+split_query(gl_query,"="); // last one
+
+function split_query(string, text)
+{
+	name = string.substring(0,string.indexOf(text));
+	value = string.substring(string.indexOf(text) + 1);
+	// for unsecapted
+	//eval("query_" + name + " = value;");
+	// for escapted
+	eval("query_" + name + " = unescape(value);");
+}
+/* End Query Lib */
+
+//------------ Start of Google Search ----------------------
+var selectedSrcLnk = "s1";
+// this function checks if we need to just change the range status or change the status and do the search  
+function searchOrChange(id,gRange,frm)
+{
+	//first check if the id is disabled
+	var elmRange = document.getElementById(id);
+	if(id != selectedSrcLnk)
+	{
+		//put the google range in the hidden input
+		var elmRangeHd = document.getElementById('d02-range');
+		elmRangeHd.value = gRange;
+		//check if the search area is empty or not
+		//if empty change the status of the range text otherwise do search
+		var elmSrch = document.getElementById('d02-txt');
+			elmRange.className = "d02-range";
+			document.getElementById(id).style.display = "block";
+			document.getElementById(selectedSrcLnk).style.display = "none";
+			selectedSrcLnk = id;
+	}
+}
+//check if search text exist and if so search otherwise do nothing
+function submitGSrch(frm)
+{
+	var ret = false; 
+	var elmSrch = document.getElementById('d02-txt');
+	
+	if(elmSrch.value != "")
+	{
+		//check if the help search is on if so change all the nessesery data
+/*		if(selectedSrcLnk == "s4")
+		{
+		  var elmFrm = document.getElementById(frm);
+			submitHelpSrch(elmFrm,elmSrch);
+		}*/
+		ret = true;
+	}
+	else parent.document.location.href = "https://web.archive.org/web/20070112093327/http://search.icq.com/"
+	return ret;
+}
+//------------ End of Google Search ----------------------
+
+
+}
+
+/*
+     FILE ARCHIVED ON 09:33:27 Jan 12, 2007 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 08:20:38 Jul 14, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  capture_cache.get: 6.261
+  load_resource: 141.028
+  PetaboxLoader3.resolve: 97.142
+  PetaboxLoader3.datanode: 43.027
+*/

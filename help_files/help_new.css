@@ -1,0 +1,66 @@
+.cma_cat_name{font-family:tahoma;font-size:14px;font-weight:bold;background-color:#CEEA82;width:400px;}
+.cma_cat_questions{font-family:tahoma;font-size:12px;}
+.cma_summary_link{font-family:tahoma;font-size:12px;color:red;width:280px;}
+.cma_faq_summary{font-family:tahoma;font-size:12px;color:black;width:280px;}
+.cma_faq_link_edit{font-family:tahoma;font-size:12px;color:red;float:left;width:50px;text-align:center;spacing-left:10px;}
+.cma_faq_button{font-family:tahoma;font-size:12px;color:black;float:left;width:50px;text-align:center;spacing-left:10px;}
+a.cma_faq_button:visited{color:black;}
+a.cma_faq_link_edit:visited{color:red;}
+.cma_keyword{color:green;font-family:tahoma;font-size:12px;width:100px;}
+.admin_menu_box{background-color:#eeeeee;width:200px;height:135px;text-align:left;}
+.admin_menu_header{font-size:14px;color:#888888;font-weight:bold;padding-left:7px;padding-top:5px;}
+.admin_menu_item{font-size:12px;color:#3076AC;}
+a.admin_menu_item:link,a.admin_menu_item:visited{font-size:12px;color:#3076AC;padding-left:8px;}
+a.admin_menu_item:hover{font-size:12px;color:#203288;padding-left:8px;text-decoration:underline;}
+.cma_header{background-color:#aaaaaa;border:1px solid #bbbbbb;width:800;height:130px;padding-top:10px;padding-left:5px;}
+.predef_links_box{width:100px;height:50px;font-size:12px;}
+a.predef_links_box_item:link,a.predef_links_box_item:visited,a.predef_links_box_item{font-size:12px;color:black;}
+a.predef_links_box_item:hover{font-size:12px;color:red;color:black;}
+a.category_list_link,a.category_list_link:visited{font-size:14px;color:#3076AC;padding-left:8px;}
+
+a,a:link,a:visited{color:#003499;font-size:11px;font-family:tahoma,verdana,sans-serif;text-decoration:underline;}
+a:hover{color:#FF0000;}
+.cc,.tcc{background-color:#845873;}
+.fcc:link,.fcc:visited{color:#845873 ;font-family:Tahoma,verdana,sans-serif;font-size:12px;font-weight:bold;text-decoration:none;}
+.footerArea1:hover,.footerArea1,.footerArea1:link,.footerArea1:visited{color:#FFFFFF;}
+.tl{border-bottom:1px solid #845873;border-top:1px solid #845873 ;}
+.systemTitle,.systemTitle:hover { color: #250c4e;}
+.pageTitle {color: #730619; }
+.cma-efaq1,.cma-efaq1:link,.cma-efaq1:visited,.cma-efaq2{background-color:#99ccff;color:black;font-family:verdana;font-size:14px;padding-top:2px;}
+.cma-efaq2,.cma-efaq2:link,.cma-efaq2:visited{background-color:#99ccaa;color:black;font-family:verdana;font-size:14px;}
+.cma-cur-cat{border-bottom:1px solid black;font-weight:bold;margin-bottom:5px;}
+a.edit_link,a.edit_link:link,a.edit_link:visited{color:black;font-decoration:underline;}
+.cma_background{background-color: #FBF9EA; font-family: arial;}
+/* start bread crumbs */
+.bcrumb{font-family: verdana, tahoma, arial; font-size: 11px; color: #8C597B}
+a.bcrumb-lnk1:link,a.bcrumb-lnk1:visited,a.bcrumb-lnk1:hover{font-family: verdana, tahoma, arial; font-size: 11px; color: #8C597B}
+a.bcrumb-lnk2:link,a.bcrumb-lnk2:visited,a.bcrumb-lnk2:hover{font-family: verdana, tahoma, arial; font-size: 11px; color: #8C597B;font-weight: bold; text-decoration: none;}
+/* end bread crumbs */
+
+.hclink:link,.hclink:visited{color:black;font-family:Tahoma,verdana,sans-serif;font-size:13px;font-weight:bold;}
+.hclink2:link, .hclink2:visited{color:black;font-family:Tahoma,verdana,sans-serif;font-size:11px;font-weight:none;text-decoration:none;color:black;}
+.hclink:hover,.hclink2:hover {color:black;font-family:Tahoma,verdana,sans-serif;font-size:11px;font-weight:none;color:red;}
+.hclink:hover {font-size: 13px;}
+
+
+/*
+     FILE ARCHIVED ON 19:58:51 Feb 02, 2007 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 08:20:37 Jul 14, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  capture_cache.get: 3.872
+  captures_list: 2.811
+  exclusion.robots: 0.176
+  exclusion.robots.policy: 0.159
+  esindex: 0.021
+  cdx.remote: 58.984
+  LoadShardBlock: 221.001 (3)
+  PetaboxLoader3.datanode: 207.592 (4)
+  load_resource: 159.379
+  PetaboxLoader3.resolve: 94.09
+*/

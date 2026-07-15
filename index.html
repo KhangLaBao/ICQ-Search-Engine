@@ -30,40 +30,250 @@
 <br>
 
 
+<div class="d3-1" style="width:424px;">
 
-      <div class="d3-1" style="width: 424px; color:rgb (0,0,204) !important;">
-				<span class="d3-1-1" onclick="execSearch('web','1');" id="web" style="color: #000000;;text-decoration:none;font-weight:bold;">Web</span>
-				<span class="d3-1-1" onclick="execSearch('site','1');" id="site" style="text-decoration: underline;">ICQ.com</span>
-				<span class="d3-1-1" onclick="execSearch('people','1');" id="people"style="text-decoration: underline;">People</span>
-				<span class="d3-1-1" onclick="execSearch('def','1');" id="def"style="text-decoration: underline;">Translation</span>
-			</div>
+    <span class="d3-1-1 active-tab"
+          id="web"
+          onclick="execSearch('web',this)">
+        Web
+    </span>
 
+    <span class="d3-1-1"
+          id="site"
+          onclick="execSearch('site',this)">
+        Images
+    </span>
+
+    <span class="d3-1-1"
+          id="people"
+          onclick="execSearch('people',this)">
+        People
+    </span>
+
+    <span class="d3-1-1 rss-tab"
+          id="rss"
+          onclick="execSearch('rss',this)">
+
+        RSS
+
+        <img src="imgs/new.gif"
+             class="rss-new"
+             alt="NEW">
+
+    </span>
+
+    <div class="more-menu">
+
+        <a href="javascript:void(0)"
+           id="moreBtn"
+           onclick="toggleMore(event)">
+            More
+            <img src="imgs/arrow_mg.gif" border="0">
+        </a>
+
+        <div id="moreDropdown" class="more-dropdown">
+
+            <a href="javascript:void(0)"
+               onclick="execSearch('presentations',this)">
+                Presentations
+            </a>
+
+            <a href="javascript:void(0)"
+               onclick="execSearch('documents',this)">
+                Documents
+            </a>
+
+            <a href="javascript:void(0)"
+               onclick="execSearch('icq',this)">
+                ICQ.com
+            </a>
+
+            <a href="javascript:void(0)"
+               onclick="execSearch('translation',this)">
+                Translation
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+      <script> 
+function toggleMore(e){
+
+    if(e){
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    var box = document.getElementById("moreDropdown");
+
+    box.style.display =
+        (box.style.display === "block")
+        ? "none"
+        : "block";
+
+    return false;
+}
+
+
+function showAdvancedSearch() {
+    alert(
+        "Advanced Search\n\n" +
+        "Coming Soon™\n\n" +
+        "Development was suspended in 2008.\n\n" +
+        "Reason:\n" +
+        "The engineers were laid off.\n\n" +
+        "Please enjoy Basic Search instead."
+    );
+}
+
+
+//--------------------------------------------------
+// ICQ Search Tabs (Late 2007)
+//--------------------------------------------------
+
+function execSearch(mode, element){
+
+    // Remove active state
+    document.querySelectorAll(".d3-1-1").forEach(function(tab){
+
+        tab.classList.remove("active-tab");
+
+    });
+
+    // Remove active state from More button
+    document.getElementById("moreBtn").classList.remove("active-tab");
+
+    //------------------------------------------------
+    // Highlight current selection
+    //------------------------------------------------
+
+    if(element.tagName.toLowerCase()=="span"){
+
+        element.classList.add("active-tab");
+
+    }else{
+
+        document.getElementById("moreBtn").classList.add("active-tab");
+
+    }
+
+    //------------------------------------------------
+    // Advanced Search
+    //------------------------------------------------
+
+    var adv=document.getElementById("advancedSearch");
+
+    if(mode=="web"){
+
+        adv.style.visibility="visible";
+
+    }else{
+
+        adv.style.visibility="hidden";
+
+    }
+
+    //------------------------------------------------
+    // Close dropdown
+    //------------------------------------------------
+
+    document.getElementById("moreDropdown").style.display="none";
+
+}
+
+
+//--------------------------------------------------
+// More menu
+//--------------------------------------------------
+
+function toggleMore(e){
+
+    e.preventDefault();
+
+    var box=document.getElementById("moreDropdown");
+
+    if(box.style.display=="block"){
+
+        box.style.display="none";
+
+    }else{
+
+        box.style.display="block";
+
+    }
+
+    return false;
+
+}
+
+
+//--------------------------------------------------
+// Close menu when clicking outside
+//--------------------------------------------------
+
+document.addEventListener("click",function(e){
+
+    if(!e.target.closest(".more-menu")){
+
+        document.getElementById("moreDropdown").style.display="none";
+
+    }
+
+});
+
+
+
+      </script>
 <div class="search-container">
-  
-  <!-- Sửa action trỏ đến file kết quả của bạn -->
-  <form action="results.html" method="get">
-    <!-- Phải giữ nguyên input hidden CX để Google nhận diện bộ máy của bạn -->
-    <input type="hidden" name="cx" value="c5ed00b64fd0146ff" />
-    
-    <table cellspacing="0" cellpadding="0">
-      <tr>
-        <td>
-          <input type="text" name="q" size="41" style="width:324px;height: 21px;">
-            
-        </td>
-        <td class="button-td" style="padding-left: 0px;   position: relative;left: -35px;">
-        <input
-      class="search-img"
-      type="image"
-      src="imgs/search_butt2.gif"
-      alt="Search"
-      width="100"
-      height="23">
 
-        </td>
-      </tr>
+<form action="results.html" method="get">
+
+    <!-- Google CSE -->
+    <input type="hidden" name="cx" value="c5ed00b64fd0146ff">
+
+    <table class="d2-2-2" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+
+            <!-- Search textbox -->
+            <td class="d2-2-2-1">
+                <input
+                    id="search_keyword"
+                    class="d2-2-2-1-txt"
+                    type="text"
+                    name="q"
+                    maxlength="100"
+                    size="41"
+                    style="width: 280px !important;">
+            </td>
+
+            <!-- Search button -->
+            <td class="button-td">
+                <input
+                    class="search-img"
+                    type="image"
+                    src="imgs/buttonsearch2.png"
+                    alt="Search"
+                    width="89"
+                    height="23">
+            </td>
+
+            <!-- Advanced Search -->
+            <td class="d2-2-2-3" id="advancedSearch">
+                <a href="javascript:void(0);"  onclick="showAdvancedSearch(); return false;">
+                    Advanced Search
+                </a>
+            </td>
+
+        </tr>
     </table>
-  </form>
+
+</form>
+
 </div>
         <br>
        
@@ -90,7 +300,7 @@
     <a href="https://web.archive.org/web/20070111213042/http://boards.icq.com/boards/" style="color:#0000CE">Forums</a> |
     <a href="https://web.archive.org/web/20070207013409/http://games.icq.com/index.htm?lc=en" style="color:#0000CE">Games</a> |
     <a href="https://web.archive.org/web/20070106082926/http://www.icq.com/friendship" style="color:#0000CE">Greetings</a> | <br>
-    <a href="https://web.archive.org/web/20070114022440/http://www.icq.com/help/" style="color:#0000CE;">Help</a>
+    <a href="help.html" style="color:#0000CE;">Help</a>
   </div>
 
   <!-- Đặt margin thành 0 để dòng copyright dính sát vào dòng Help phía trên -->

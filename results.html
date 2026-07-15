@@ -6,6 +6,16 @@
     <link rel="stylesheet" href="CSS+Js/style.css" />
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />    
+
+    <script> 
+        // Redirect empty searches back to the homepage.
+const q = new URLSearchParams(window.location.search).get("q");
+
+if (!q || !q.trim()) {
+    window.location.replace("index.html");
+}
+
+    </script>
 </head>
 <body bgcolor="#e5e5e5">
 <div class="gray-top-border">
@@ -96,7 +106,7 @@ style="width:324px;height:21px;">
 class="search-img"
 type="image"
 src="imgs/buttonsearch2.png"
-width="100"
+width="89"
 height="23">
 
 </td>
@@ -118,7 +128,7 @@ height="23">
     align="right">
 
 
-<div style="font-size: 12px; position: absolute; right: 0;top:0;">Go to:&nbsp;<a href="https://web.archive.org/web/20070310093437/http://www.icq.com/" class="d1-link" style="color:#0000CE">www.icq.com</a>⠀</div>
+<div style="font-size: 12px; position: absolute; right: 0;top:0;">Go to:&nbsp;<a href="https://web.archive.org/web/20070310093437/http://www.icq.com/" class="d1-link" style="color:#0000CE">www.icq.com</a>⠀⠀</div>
 
 </td>
 
@@ -127,6 +137,44 @@ height="23">
 </table>
 
 <script>
+    function replaceNoResults() {
+
+    const snippet = document.querySelector(".gs-snippet");
+
+    if (!snippet) return;
+
+    if (!snippet.textContent.includes("khớp") &&
+        !snippet.textContent.includes("did not match") &&
+        !snippet.textContent.includes("No results"))
+        return;
+
+    const q = new URLSearchParams(location.search).get("q") || "";
+
+    snippet.innerHTML = `
+<div class="nor1">
+Your search -
+<b>${q}</b>
+- did not match any documents.
+</div>
+
+<div class="nor2">
+Suggestions
+</div>
+
+<div class="nor3">
+<ul>
+<li>Make sure all words are spelled correctly.</li>
+<li>Try different keywords.</li>
+<li>Try more general keywords.</li>
+</ul>
+</div>
+`;
+
+}
+
+setInterval(replaceNoResults,500);
+
+
 function changeTab(tab) {
 
     var timer = setInterval(function () {
@@ -287,6 +335,15 @@ function hideGoogleBranding(){
 
 setInterval(hideGoogleBranding,300);
 
+window.addEventListener("load", function () {
+    const q = new URLSearchParams(location.search).get("q") || "";
+    const el = document.getElementById("icqKeyword");
+
+    if (el) {
+        el.textContent = q;
+    }
+});
+
 </script>
 
     <!-- Bảng chính bao quanh toàn bộ nội dung 800px -->
@@ -380,7 +437,7 @@ of about
                         class="search-img"
                         type="image"
                         src="imgs/buttonsearch2.png"
-                        width="100"
+                        width="89"
                         height="23">
 
                 </td>
@@ -400,6 +457,13 @@ of about
 <center><div class="copyr">Copyright © 1998-2007 ICQ Inc. All Rights Reserved</div></center>
 
 <br>
+
+<center>
+
+
+
+<div class="tbar"><a href="https://web.archive.org/web/20071013165740/http://download.icq.com/download/toolbar/"><img src="https://web.archive.org/web/20071013165740im_/http://c.icq.com/search/img/toolbar_en.jpg" width="522" height="98" border="0" alt=""></a></div>
+</center>
 
 </body>
 </html>
@@ -459,20 +523,14 @@ of about
   // =========================
   // 🟢 WELCOME
   // =========================
-  function showWelcome() {
-    var q = new URLSearchParams(window.location.search).get('q');
-    var box = document.querySelector('.results-border-box');
+// Redirect empty searches back to the homepage.
+const q = new URLSearchParams(window.location.search).get("q");
 
-    if (!q && box) {
-      box.innerHTML =
-        '<div class="welcome-container">' +
-        '<h1>Welcome, Comrade! 🌟</h1>' +
-        '<p>The Red Star is ready to guide your search.</p>' +
-        '<p class="hint">Type something above to begin 🚩</p>' +
-        '<div class="star-icon">★</div>' +
-        '</div>';
-    }
-  }
+if (!q || !q.trim()) {
+    window.location.replace("index.html");
+}
+
+
   
   // =========================
   // 🟡 STATS FIX
@@ -525,6 +583,7 @@ function polishICQPagination(){
             page.style.marginRight = "8px";
             page.style.display = "inline";
             page.style.cursor = "pointer";
+    page.style.setProperty("text-decoration", "underline", "important");
         });
 
           // Current page

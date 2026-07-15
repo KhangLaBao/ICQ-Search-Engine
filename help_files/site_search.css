@@ -1,0 +1,51 @@
+form{margin: 0px;}
+a{color: #449722;}
+p{margin: 0px;}
+body{font-family: verdana,tahoma,arial; background-color: #FFFFFF; font-size: 11px; margin: 0px;}
+.onepix{font-size: 1px;}
+.topBanner{height:91px;text-align:center;}
+.srchbox{height: 18px;width: 201px;font-family: tahoma, verdana, arial; font-size: 12px;line-height: 12px;}
+.radiobox{margin-top: 6px;}
+.h1{position:relative;width:769px;height:90px;}
+.h1-1{position:absolute;top:4px;left:17px;}
+.h1-2{position:absolute;top:0px;left:27px;}
+/* new search*/
+.d02-2{position:absolute;top:18px;left:366px;width:392px;height:68px;}
+.d02-2-1{float:left;width:265px;height:19px;display:none;}
+.d02-2-1-a{float:left;width:20px;height:19px;background-color:#ACE377;}
+.d02-2-1-b{float:left;height:19px;padding-left:20px;padding-right:20px;line-height:15px;background-color:#ACE377;cursor:pointer;text-align:center;}
+.d02-2-1-c{float:left;width:5px;height:19px;font-size:12px;line-height:18px;color:#CCDCD7;font-weight:normal;text-align:center;}
+.d02-2-1-d{float:left;height:19px;padding-left:20px;color:#4DAB27;line-height:15px;cursor:pointer;text-align:center;}
+.d02-2-1-m{float:left;width:20px;height:19px;}
+.d02-2-2{position:absolute;top:15px;left:10px;width:391px;height:27px;background-color:#ACE377;}
+.d02-2-3{position:absolute;top:18px;left:15px;width:290px;height:20px;}
+.d02-2-4{position:absolute;top:17px;left:308px;width:89px;height:23px;background-color:#ACE377;}
+.d02-2-5{position:absolute;top:-5px;left:303px;width:98px;height:18px;}
+input.d02-2-but{width:89px;height:23px;}
+.d02-2c{position:absolute;top:0px;left:12px;width:265px;height:19px;font-weight:bold;font-family:verdana,tahoma,arial;font-size:10px;color:#000000;}
+input.d02-2-in{width:290px;height:19px;border:1px solid #7F9DB9;font-size:12px;font-family:tahoma,verdana,arial;}
+/*end new search*/
+.h2{position: relative;width: 769px;height: 72px; z-index: 5;}
+.h2-1{position: absolute;left: 2px; top: 8px; width: 327px; height: 59px;}
+.serach_iframe{position:absolute;top:20px;left:366px;width:408px;}
+/*
+     FILE ARCHIVED ON 00:46:25 Feb 14, 2007 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 08:20:46 Jul 14, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  capture_cache.get: 10.256
+  captures_list: 0.675
+  exclusion.robots: 0.057
+  exclusion.robots.policy: 0.046
+  esindex: 0.01
+  cdx.remote: 58.009
+  LoadShardBlock: 611.679 (3)
+  PetaboxLoader3.resolve: 228.079 (3)
+  PetaboxLoader3.datanode: 488.069 (4)
+  load_resource: 237.013
+*/

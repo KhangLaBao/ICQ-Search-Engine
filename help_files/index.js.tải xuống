@@ -1,0 +1,113 @@
+var _____WB$wombat$assign$function_____=function(name){return (globalThis._wb_wombat && globalThis._wb_wombat.local_init && globalThis._wb_wombat.local_init(name))||globalThis[name];};if(!globalThis.__WB_pmw){globalThis.__WB_pmw=function(obj){this.__WB_source=obj;return this;}}{
+let window = _____WB$wombat$assign$function_____("window");
+let self = _____WB$wombat$assign$function_____("self");
+let document = _____WB$wombat$assign$function_____("document");
+let location = _____WB$wombat$assign$function_____("location");
+let top = _____WB$wombat$assign$function_____("top");
+let parent = _____WB$wombat$assign$function_____("parent");
+let frames = _____WB$wombat$assign$function_____("frames");
+let opener = _____WB$wombat$assign$function_____("opener");
+var gl_nav_button_array = new Array;
+
+function change_show_mode()
+{
+	advanced_status = document.getElementById('advanced').style.display
+	if(advanced_status == 'block')
+	{
+		advanced_status = 'none';
+		basic_status = 'block';
+	}
+	else
+	{
+		advanced_status = 'block';
+		basic_status = 'none';
+	}
+
+	document.getElementById('advanced').style.display = advanced_status;
+	document.getElementById('advanced_txt').style.display = basic_status;
+	document.getElementById('basic_txt').style.display = advanced_status;
+}
+
+function make_combo_sync(from_id,to_id)
+{
+	document.getElementById(to_id).selectedIndex = document.getElementById(from_id).selectedIndex;
+}
+
+function submit_search(type_of_search)
+{
+	if(type_of_search == 'date')
+	{
+		if(document.getElementById('my_gender').value == 0) // select your gender
+		{
+			alert(get_text('people_main','must_select_gender'));
+			document.getElementById('my_gender').focus();
+			return false;
+		}
+		if(document.getElementById('match').value == 0) // select match gender
+		{
+			alert(get_text('people_main','must_select_match')); 
+			document.getElementById('match').focus();
+			return false;
+		}
+		//empty unnedded fileds
+		document.getElementById('keyword').value = '';
+		document.getElementById('uin').value = '';
+	}
+	else if(type_of_search == 'friend')
+	{
+		document.getElementById('keyword').value = '';
+		document.getElementById('my_gender').value = 0;
+		document.getElementById('m_status').value = '';
+	}
+	document.getElementById('user_search').submit();
+}
+
+function openmenu ( but_id ) 
+{
+
+	try
+	{
+		if (document.getElementById(but_id).style.display == "block") //close the button
+		{
+			document.getElementById(but_id).style.display = "none";
+			document.getElementById(but_id+'-ar').style.display = "block";
+		}
+		else  //open the button and close all the other buttons
+		{
+			for(var j in gl_nav_button_array)
+			{
+				if (j != but_id && document.getElementById(j).style.display == "block")
+				{ //close the button
+					document.getElementById(j).style.display = "none";
+					document.getElementById(j+'-ar').style.display = "block";
+				}
+			}
+			document.getElementById(but_id).style.display = "block";
+			document.getElementById(but_id+'-ar').style.display = "none";
+		}
+	}
+	catch(e){}
+}
+}
+
+/*
+     FILE ARCHIVED ON 18:50:45 Feb 02, 2007 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 08:20:50 Jul 14, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  capture_cache.get: 0.488
+  captures_list: 0.595
+  exclusion.robots: 0.041
+  exclusion.robots.policy: 0.032
+  esindex: 0.009
+  cdx.remote: 56.262
+  LoadShardBlock: 2819.938 (3)
+  PetaboxLoader3.resolve: 1904.456 (4)
+  PetaboxLoader3.datanode: 967.088 (4)
+  load_resource: 438.472
+*/
